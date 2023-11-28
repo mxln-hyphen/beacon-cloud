@@ -1,6 +1,6 @@
 package com.mxln.beaconcommon.utils;
 
-import com.mxln.beaconcommon.common.ApiException;
+import com.mxln.beaconcommon.exception.ApiException;
 import com.mxln.beaconcommon.common.ExceptionEnums;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

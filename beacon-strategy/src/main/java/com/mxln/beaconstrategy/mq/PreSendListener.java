@@ -1,5 +1,6 @@
 package com.mxln.beaconstrategy.mq;
 
+import com.mxln.beaconcommon.exception.StrategyException;
 import com.mxln.beaconstrategy.filter.StrategyFilterContext;
 import com.rabbitmq.client.Channel;
 import com.mxln.beaconcommon.common.RabbitMQConstants;
@@ -34,9 +35,9 @@ public class PreSendListener {
             filterContext.strategy(submit);
             log.info("【策略模块-消费完毕】手动ack");
             channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
-        } catch (IOException e) {
-            e.printStackTrace();
-            log.error("【策略模块-消费失败】凉凉~~~");
+        } catch (StrategyException e) {
+
+            log.error("【策略模块-消费失败】因为校验未通过，msg = {}",e.getMessage());
         }
 
 

@@ -3,8 +3,11 @@ package com.mxln.beaconcache.controller;
 import com.msb.framework.redis.RedisClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.Map;
 import java.util.Set;
 
@@ -14,6 +17,9 @@ public class CacheController {
 
     @Autowired
     private RedisClient redisClient;
+
+    @Resource
+    private RedisTemplate<String, Object> redisTemplate;
 
     @PostMapping(value = "/cache/hmset/{key}")
     public void hmset(@PathVariable(value = "key")String key, @RequestBody Map<String,Object> map){
@@ -76,5 +82,50 @@ public class CacheController {
 
     }
 
+    @PostMapping(value = "/cache/saddstr/{key}")
+    public void saddStr(@PathVariable(value = "key")String key, @RequestBody String... value){
+        log.info("【缓存模块】 saddStr方法，存储key = {}，存储value = {}", key, value);
+        redisClient.sAdd(key,value);
+    }
+
+    @PostMapping(value = "/cache/sinterstr/{key}/{sinterKey}")
+    public Set<Object> sinterStr(@PathVariable(value = "key")String key, @PathVariable String sinterKey,@RequestBody String... value){
+        log.info("【缓存模块】 sinterStr的交集方法，存储key = {}，sinterKey = {}，存储value = {}", key, sinterKey,value);
+        //1、 存储数据到set集合
+        redisClient.sAdd(key,value);
+        //2、 需要将key和sinterKey做交集操作，并拿到返回的set（RedisClient没提供，自己写的~~）
+        Set<Object> result = redisTemplate.opsForSet().intersect(key, sinterKey);
+        //3、 将key删除
+        redisClient.delete(key);
+        //4、 返回交集结果
+        return result;
+    }
+
+    @PostMapping(value = "/cache/zadd/{key}/{score}/{member}")
+    public Boolean zadd(@PathVariable(value = "key")String key,
+                        @PathVariable(value = "score")Long score,
+                        @PathVariable(value = "member")Object member){
+        log.info("【缓存模块】 zaddLong方法，存储key = {}，存储score = {}，存储value = {}", key,score, member);
+        Boolean result = redisClient.zAdd(key, member, score);
+        return result;
+    }
+
+    @GetMapping(value = "/cache/zrangebyscorecount/{key}/{start}/{end}")
+    public int zRangeByScoreCount(@PathVariable(value = "key") String key,
+                                  @PathVariable(value = "start") Double start,
+                                  @PathVariable(value = "end") Double end) {
+        log.info("【缓存模块】 zRangeByScoreCount方法，查询key = {},start = {},end = {}", key,start,end);
+        Set<ZSetOperations.TypedTuple<Object>> values = redisTemplate.opsForZSet().rangeByScoreWithScores(key, start, end);
+        if(values != null){
+            return values.size();
+        }
+        return 0;
+    }
+
+    @DeleteMapping(value = "/cache/zremove/{key}/{member}")
+    public void zRemove(@PathVariable(value = "key") String key,@PathVariable(value = "member") String member) {
+        log.info("【缓存模块】 zRemove方法，删除key = {},member = {}", key,member);
+        redisClient.zRemove(key,member);
+    }
 
 }

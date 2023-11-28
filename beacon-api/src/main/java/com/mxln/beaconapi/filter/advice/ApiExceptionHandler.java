@@ -3,7 +3,7 @@ package com.mxln.beaconapi.filter.advice;
 
 import com.mxln.beaconapi.filter.vo.R;
 import com.mxln.beaconapi.filter.vo.ResultVO;
-import com.mxln.beaconcommon.common.ApiException;
+import com.mxln.beaconcommon.exception.ApiException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 

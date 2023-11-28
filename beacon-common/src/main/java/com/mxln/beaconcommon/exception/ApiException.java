@@ -1,5 +1,6 @@
-package com.mxln.beaconcommon.common;
+package com.mxln.beaconcommon.exception;
 
+import com.mxln.beaconcommon.common.ExceptionEnums;
 import lombok.Getter;
 
 @Getter

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
+import java.util.Set;
 
 @FeignClient(value = "beacon-cache")
 public interface CacheClient {
@@ -22,4 +23,9 @@ public interface CacheClient {
 
     @PostMapping("/cache/pipeline/string")
     void pipelineString(@RequestBody Map<String,String> map);
+
+    @PostMapping(value = "/cache/saddstr/{key}")
+    void saddStr(@PathVariable(value = "key")String key, @RequestBody String... value);
+
+
 }

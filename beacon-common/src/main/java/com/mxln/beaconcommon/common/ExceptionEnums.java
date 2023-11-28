@@ -12,7 +12,12 @@ public enum ExceptionEnums {
     ERROR_MOBILE(-5,"手机号格式不正确"),
     BALANCE_NOT_ENOUGH(-6,"客户余额不足"),
     SNOWFLAKE_OUT_OF_RANGE(-11,"雪花算法的机器id或服务id超出最大范围"),
-    SNOWFLAKE_TIME_BACK(-12,"雪花算法出现时间回拨")
+    SNOWFLAKE_TIME_BACK(-12,"雪花算法出现时间回拨"),
+    HAVE_DIRTY_WORD(-13,"短信包含敏感词"),
+    BLACK_GLOBAL(-14,"当前手机号为平台黑名单"),
+    BLACK_CLIENT(-15,"当前手机号为客户黑名单"),
+    ONE_MINUTE_LIMIT(-16,"60秒内不能发送一条以上短信"),
+    ONE_HOUR_LIMIT(-17,"1小时内不能发送三条以上短信")
     ;
 
     private Integer code;

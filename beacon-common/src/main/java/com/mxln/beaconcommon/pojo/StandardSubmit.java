@@ -1,5 +1,6 @@
 package com.mxln.beaconcommon.pojo;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.ErrorMsg;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -102,7 +103,7 @@ public class StandardSubmit implements Serializable {
     /**
      * 0-验证码短信 1-通知类短信 2-营销类短信
      */
-    private String state;
+    private Integer state;
 
     /**
      * 客户端的真实ip
@@ -114,6 +115,21 @@ public class StandardSubmit implements Serializable {
      * 签名的id
      */
     private Long signId;
+
+    /**
+     * 短信发送失败的原因是什么，记录在当前属性
+     */
+    private String errorMsg;
+
+    /**
+     * 是否已经携号转网
+     */
+    private Boolean IsTransfer;
+
+    /**
+     * 针对1小时限流规则储存的系统时间毫秒值
+     */
+    private Long oneHourLimitMilli;
 
     // 后续再做封装~~~~
 

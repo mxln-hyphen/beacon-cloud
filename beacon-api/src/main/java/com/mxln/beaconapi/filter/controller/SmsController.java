@@ -24,6 +24,7 @@ import com.mxln.beaconcommon.pojo.StandardSubmit;
 import com.mxln.beaconcommon.utils.SnowFlakeUtil;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/sms")
@@ -57,6 +58,7 @@ public class SmsController {
         StandardSubmit standardSubmit = new StandardSubmit();
         BeanUtils.copyProperties(singleSendForm,standardSubmit);
         standardSubmit.setRealIp(realIP);
+        standardSubmit.setSendTime(LocalDateTime.now());
 
         //调用策略模式的校验链
         checkFilterContext.check(standardSubmit);

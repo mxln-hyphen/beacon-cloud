@@ -3,7 +3,7 @@ package com.mxln.beaconapi.filter.impl;
 import com.alibaba.cloud.commons.lang.StringUtils;
 import com.mxln.beaconapi.filter.CheckFilter;
 import com.mxln.beaconapi.filter.utils.PhoneFormatCheckUtil;
-import com.mxln.beaconcommon.common.ApiException;
+import com.mxln.beaconcommon.exception.ApiException;
 import com.mxln.beaconcommon.common.ExceptionEnums;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

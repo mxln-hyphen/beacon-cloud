@@ -29,4 +29,34 @@ public interface CacheConstant {
      * 号段
      */
     String PHASE = "phase:";
+
+    /**
+     * 敏感词
+     */
+    String DIRTY_WORD = "dirty_word";
+
+    /**
+     * 黑名单前缀
+     */
+    String BLACK = "black:";
+
+    /**
+     * 间隔符
+     */
+    String SEPARATE = ":";
+
+    /**
+     * 携号转网前缀
+     */
+    String TRANSFER = "transfer:";
+
+    /**
+     * 分钟的限流
+     */
+    String LIMIT_MINUTES = "limit:minutes";
+
+    /**
+     * 小时的限流
+     */
+    String LIMIT_HOURS = "limit:hours";
 }

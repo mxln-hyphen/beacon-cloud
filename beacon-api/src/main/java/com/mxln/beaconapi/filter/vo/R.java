@@ -1,6 +1,6 @@
 package com.mxln.beaconapi.filter.vo;
 
-import com.mxln.beaconcommon.common.ApiException;
+import com.mxln.beaconcommon.exception.ApiException;
 
 public class R {
 

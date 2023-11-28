@@ -2,7 +2,7 @@ package com.mxln.beaconapi.filter.impl;
 
 import com.mxln.beaconapi.filter.CheckFilter;
 import com.mxln.beaconapi.filter.remote.BeaconCacheClient;
-import com.mxln.beaconcommon.common.ApiException;
+import com.mxln.beaconcommon.exception.ApiException;
 import com.mxln.beaconcommon.common.CacheConstant;
 import com.mxln.beaconcommon.common.ExceptionEnums;
 import lombok.extern.slf4j.Slf4j;
