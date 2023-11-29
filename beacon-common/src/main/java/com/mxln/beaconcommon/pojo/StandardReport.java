@@ -1,5 +1,9 @@
 package com.mxln.beaconcommon.pojo;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +13,7 @@ import java.time.LocalDateTime;
 
 /**
  * 状态报告推送等操作时的类
+ *
  * @author zjw
  * @description
  */
@@ -41,6 +46,8 @@ public class StandardReport implements Serializable {
     /**
      * 短信的发送时间，当前系统时间
      */
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime sendTime;
 
     /**
@@ -54,10 +61,15 @@ public class StandardReport implements Serializable {
     private String errorMsg;
 
     /**
-     *  回调的信息
+     * 回调的信息
      */
     private Integer isCallback;
 
     private String callbackUrl;
+
+    /**
+     * 推送报告重试次数
+     */
+    private Integer resendCount = 0;
 
 }

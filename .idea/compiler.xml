@@ -7,11 +7,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="beacon-push" />
+        <module name="beacon-api" />
+        <module name="beacon-common" />
         <module name="beacon-cache" />
         <module name="beacon-test" />
         <module name="beacon-strategy" />
-        <module name="beacon-api" />
-        <module name="beacon-common" />
+        <module name="beacon-search" />
       </profile>
     </annotationProcessing>
   </component>
@@ -20,6 +22,8 @@
       <module name="beacon-api" options="-parameters" />
       <module name="beacon-cache" options="-parameters" />
       <module name="beacon-common" options="-parameters" />
+      <module name="beacon-push" options="-parameters" />
+      <module name="beacon-search" options="-parameters" />
       <module name="beacon-strategy" options="-parameters" />
       <module name="beacon-test" options="-parameters" />
     </option>

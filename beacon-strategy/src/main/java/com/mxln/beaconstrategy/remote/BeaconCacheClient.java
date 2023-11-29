@@ -3,6 +3,7 @@ package com.mxln.beaconstrategy.remote;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.Set;
 
 @FeignClient(value = "beacon-cache")
@@ -23,6 +24,9 @@ public interface BeaconCacheClient {
     @GetMapping("/cache/smember/{key}")
     Set smember(@PathVariable(value = "key")String key);
 
+    @GetMapping("/cache/smember/{key}")
+    Set<Map> smemberMap(@PathVariable(value = "key")String key);
+
     @PostMapping(value = "/cache/zadd/{key}/{score}/{member}")
     Boolean zadd(@PathVariable(value = "key")String key,
                         @PathVariable(value = "score")Long score,
@@ -35,5 +39,13 @@ public interface BeaconCacheClient {
 
     @DeleteMapping(value = "/cache/zremove/{key}/{member}")
     void zRemove(@PathVariable(value = "key") String key,@PathVariable(value = "member") String member);
+
+    @PostMapping(value = "/cache/hincrby/{key}/{field}/{delta}")
+    Long hIncrBy(@PathVariable(value = "key") String key,
+                        @PathVariable(value = "field") String field,
+                        @PathVariable(value = "delta") Long delta);
+
+    @GetMapping("/cache/hgetall/{key}")
+    public Map hGetAll(@PathVariable(value = "key")String key);
 
 }

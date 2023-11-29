@@ -1,5 +1,9 @@
 package com.mxln.beaconcommon.pojo;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.util.ErrorMsg;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -55,8 +59,10 @@ public class StandardSubmit implements Serializable {
     private String text;
 
     /**
-     * 短信的发送时间
+     * 短信的发送时间，当前系统时间
      */
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime sendTime;
 
     /**

@@ -9,6 +9,8 @@
         <module>beacon-cache</module>
         <module>beacon-test</module>
         <module>beacon-strategy</module>
+        <module>beacon-search</module>
+        <module>beacon-push</module>
     </modules>
 
     <parent>

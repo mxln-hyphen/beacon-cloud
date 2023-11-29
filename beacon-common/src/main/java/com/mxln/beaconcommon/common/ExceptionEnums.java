@@ -17,7 +17,10 @@ public enum ExceptionEnums {
     BLACK_GLOBAL(-14,"当前手机号为平台黑名单"),
     BLACK_CLIENT(-15,"当前手机号为客户黑名单"),
     ONE_MINUTE_LIMIT(-16,"60秒内不能发送一条以上短信"),
-    ONE_HOUR_LIMIT(-17,"1小时内不能发送三条以上短信")
+    ONE_HOUR_LIMIT(-17,"1小时内不能发送三条以上短信"),
+    NO_CHANNEL(-18,"没有可用的通道"),
+    UNKNOWN_ERROR(-9999,"未知的错误"),
+    SEARCH_INDEX_ERROR(-19,"添加失败")
     ;
 
     private Integer code;
