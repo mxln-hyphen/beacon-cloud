@@ -72,4 +72,9 @@ public class StandardReport implements Serializable {
      */
     private Integer resendCount = 0;
 
+    /**
+     * 用户的唯一ApiKey，用于在网关运营商的二次回调中可以方便查看客户状态报告的信息
+     */
+    private String apikey;
+
 }

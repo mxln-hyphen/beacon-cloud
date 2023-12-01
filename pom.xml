@@ -11,6 +11,7 @@
         <module>beacon-strategy</module>
         <module>beacon-search</module>
         <module>beacon-push</module>
+        <module>beacon-smsgateway</module>
     </modules>
 
     <parent>
@@ -43,6 +44,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.12.5</version>
         </dependency>
     </dependencies>
 
